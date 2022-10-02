@@ -1,27 +1,20 @@
-//! This crate provides bindings to the wlroots wayland protocol extensions
-//! provided in <https://gitlab.freedesktop.org/wlroots/wlr-protocols>
-//!
-//! These bindings are built on top of the crates wayland-client and wayland-server.
-//!
-//! Each protocol module contains a `client` and a `server` submodules, for each side of the
-//! protocol. The creation of these modules (and the dependency on the associated crate) is
-//! controlled by the two cargo features `client` and `server`.
+// Generate the bindings in their own module
+pub mod wlr_workspace_unstable {
+    use wayland_client;
+    // import objects from the core protocol if needed
+    use wayland_client::protocol::*;
 
-#![warn(missing_docs)]
-#![forbid(improper_ctypes, unsafe_op_in_unsafe_fn)]
-#![cfg_attr(docsrs, feature(doc_auto_cfg))]
-#![cfg_attr(rustfmt, rustfmt_skip)]
-
-#[macro_use]
-mod protocol_macro;
-
-pub mod ext_workspace_unstable {
-    //! Protocol for general workspaces (used specifically for Hyprland)
-
-    #[allow(missing_docs)]
-    pub mod v1 {
-        wayland_protocol!("./protocols/ext-workspace-unstable-v1.xml",
-            []
-        );
+    // This module hosts a low-level representation of the protocol objects
+    // you will not need to interact with it yourself, but the code generated
+    // by the generate_client_code! macro will use it
+    pub mod __interfaces {
+        // import the interfaces from the core protocol if needed
+        use wayland_client::protocol::__interfaces::*;
+        wayland_scanner::generate_interfaces!("./protocols/ext-workspace-unstable-v1.xml");
     }
+    use self::__interfaces::*;
+
+    // This macro generates the actual types that represent the wayland objects of
+    // your custom protocol
+    wayland_scanner::generate_client_code!("./protocols/ext-workspace-unstable-v1.xml");
 }
