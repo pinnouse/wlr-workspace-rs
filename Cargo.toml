@@ -6,11 +6,11 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-wayland-scanner = { version = "0.29.5" }
-wayland-backend = { version = "0.1.0-beta.10" }
-wayland-client = { version = "0.29.5", optional = true }
-wayland-server = { version = "0.29.5", optional = true }
-wayland-protocols = { version = "0.29.5" }
+wayland-scanner = { git = "https://github.com/Smithay/wayland-rs" }
+wayland-backend = { git = "https://github.com/Smithay/wayland-rs" }
+wayland-client = { git = "https://github.com/Smithay/wayland-rs", optional = true }
+wayland-server = { git = "https://github.com/Smithay/wayland-rs", optional = true }
+wayland-protocols = { git = "https://github.com/Smithay/wayland-rs" }
 bitflags = "1.0"
 
 [features]
