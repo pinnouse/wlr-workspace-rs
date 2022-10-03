@@ -10,3 +10,8 @@ wayland-scanner = { version = "0.30.0-beta.10" }
 wayland-backend = { version = "0.1.0-beta.10" }
 wayland-client = { version = "0.30.0-beta.10" }
 bitflags = "1.0"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
